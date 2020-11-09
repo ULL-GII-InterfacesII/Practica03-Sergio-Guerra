@@ -99,4 +99,4 @@ Si está a una distancia media (entre 1 y 4 unidades), el objeto sufrirá un des
      }
   }
 ```
-
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/Disparos.gif)
