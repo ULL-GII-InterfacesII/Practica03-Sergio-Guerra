@@ -47,4 +47,8 @@ El proceso con el objeto B y su evento correspondiente es análogo, a excepción
   
 ![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/1ObjetoA.gif)  
 
-![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/1ObjetoB.gif)
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/1ObjetoB.gif)  
+ 
+#### 2. Implementar un controlador de escena usando el patrón delegado que gestione las siguientes acciones:  
+a. Si el jugador dispara, los objetos de tipo A que estén a una distancia media serán desplazados y los que estén a una distancia pequeña serán destruidos. Los umbrales que marcan los límites se deben configurar en el inspector.
+
