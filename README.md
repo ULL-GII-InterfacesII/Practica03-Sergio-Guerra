@@ -44,5 +44,5 @@ Este método jump es el siguiente:
     }
 ```  
 El proceso con el objeto B y su evento correspondiente es análogo, a excepción de que en vez de sacar un mensaje por pantalla, se incrementa un contador.  
-![alt_text]()
-![alt_text]()
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/1ObjetoA.gif)
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/1ObjetoB.gif)
