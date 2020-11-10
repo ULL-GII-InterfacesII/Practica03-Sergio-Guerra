@@ -100,3 +100,38 @@ Si está a una distancia media (entre 1 y 4 unidades), el objeto sufrirá un des
   }
 ```
 ![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/Disparos.gif)
+   
+ b. Si el jugador choca con objetos de tipo B, todos los de ese tipo sufrirán alguna transformación o algún cambio en su apariencia y decrementarán el poder del jugador  
+   
+ El cambio de apariencia que he decidido implementar es un cambio de color. Es decir, cuando un jugador choca con un objeto tipo B,  todos los objetos de este tipo cambiarán de color. Además, cuando ocurra esta colisión cada objeto del tipo B le restará un punto de vida al jugador. Es decir, que si hay dos objetos tipo B, el jugador perderá dos puntos de vida.  
+ Esto se ha implementado (evidentemente) mediante un método delegado. El jugador colisiona con un objeto y comprueba si es de tipo B. Si es así, dispará un evento que los objetos del tipo B estarán escuchando. Cuando estos reciban el evento, sufren el cambio programado. 
+  
+El código que dispara el evento en la colision es el siguiente (vemos cómo se llama al nuevo evento junto a los otros dos del apartado anterior):  
+```c#
+  void OnCollisionEnter(Collision collision) {
+      if (collision.gameObject.name == "DroneA")
+       EventoA();
+      if (collision.gameObject.name == "DroneB")
+        EventoB();
+      if (collision.gameObject.tag == "B")
+        collisionWithBObject();
+    }
+```  
+Los objetos tipo B se suscriben al evento del delegado de la misma manera en que se ha explicado anteriormente. Se obtiene el gameObject del elemento
+que disparará el vento (en este caso el jugador), se accede al script que contiene el delegado y se produce la suscripción.  
+El método que produce los cambios en los objetos tipo B es un método simple de generación y cambio de color.  
+  
+```c#
+  void changeColor() {
+      Renderer myrd = GetComponent<Renderer>();
+      Color randomColor = new Color(
+        Random.Range(0f, 1f),
+        Random.Range(0f, 1f),
+        Random.Range(0f, 1f)
+      );
+      myrd.material.color = randomColor;
+      Debug.Log("El jugador ha perdido vida. Ahora tiene: " + --scriptInstance.health + " hp");
+
+    }
+```  
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/CambioTipoB.gif)
