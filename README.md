@@ -167,5 +167,34 @@ El método suscrito:
       mytf.position -= new Vector3(1.0f, 0.0f, 0.0f);
     }
 ```  
-En el siguiente gif podemos ver el resultado de la implementación
-![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/abrirHabitacion.gif)
+En el siguiente gif podemos ver el resultado de la implementación  
+
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/abrirHabitacion.gif)  
+  
+#### 4. Incorporar un elemento que sirva para encender o apagar un foco utilizando el teclado.
+ 
+ El elemento que se ha añadido es un botón de color blanco en la pared. Al estar cerca de este, el jugador puede encenderlo utilizando la tecla "l".  
+ La luz comienza apagada, así que nada más iniciar la escena bajamos su intensidad a 0   
+ 
+ ```c#
+    myLight = GameObject.Find("Lamp light").GetComponent<Light>();
+    myLight.intensity = 0;
+```  
+  
+ La disposición inicial del botón y la luz es la siguiente:
+
+ ![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/DisposiciónLuz.png)  
+   
+ La comunicación entre el botón y la luz no se realiza mediante un evento de un delegado, sino directamente mediante el acceso del botón al gameObject de la luz. Esto se ha implementado así dado que va a ser una comunicación de uno a uno y el uso de un delegado solo complicaría más las cosas.  
+ 
+ Para saber cuándo el jugador puede o no enceder la luz se ha activado la propiedad IsTrigger en el collider del botón. Este se ha aumentado de tamaña para saber cuándo el jugador está en las cercanías. Usando el OnTriggerStay (indicando cuando el jugador está cerca) comprobamos si la tecla asignada (l) es pulsada o no. Si es así, aumentamos la intesidad del elemento luminoso.  
+ 
+ ```c#
+   void OnTriggerStay (Collider collider) {
+     float distance = Vector3.Distance(playertf.position, mytf.position);
+     if ((distance < 1.5) && (Input.GetKeyDown("l")))
+       myLight.intensity = 5;
+   }
+```  
+Con esto, conseguimos implementar la funcionalidad de que el jugador pueda encender la luz.  
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/encenderLuz.gif)
