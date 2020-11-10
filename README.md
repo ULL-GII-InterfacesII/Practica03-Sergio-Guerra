@@ -135,3 +135,37 @@ El método que produce los cambios en los objetos tipo B es un método simple de
     }
 ```  
 ![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/CambioTipoB.gif)
+
+#### 3. En la escena habrá ubicados un tipo de objetos que al ser recolectados por el jugador harán que ciertos obstáculos se desplacen desbloqueando algún espacio.  
+  
+Se ha colocado una pequeña esfera con apariencia de holograma que cuando el jugador la recolecta (cuando se posiciona encima de ella) se desbloquea una segunda habitación.  
+  
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/recolectable.png)  
+  
+La recolección se ha implementado mediante un trigger y la comunicación mediante el evento de un delegado.  
+La esfera tiene un collider con la opción isTrigger activada. Así, cuando este es detactado se comprueba si el causante es el jugador. Si es así, el objeto es destruido (se recolecta) y se dispara un evento.  
+  
+```c#
+    void OnTriggerEnter(Collider collider) {
+      Destroy(gameObject, 0.0f);
+      collectedEvent();
+    }
+```  
+El objeto que se desplazará para abrir el nuevo camino, en este caso, un armario, estará a la escucha de si este evento se produce. Cuando esto ocurra, su desplaza hacia un lado.  
+La suscripción al evento se realiza como de costumbre:  
+```c#
+  GameObject tempObj;
+  tempObj = GameObject.Find("obstacle");
+  scriptInstance = tempObj.GetComponent<collected>();
+  scriptInstance.collectedEvent += open;
+```  
+  
+El método suscrito:  
+```c#
+    void open() {
+      Transform mytf = GetComponent<Transform>();
+      mytf.position -= new Vector3(1.0f, 0.0f, 0.0f);
+    }
+```  
+En el siguiente gif podemos ver el resultado de la implementación
+![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/abrirHabitacion.gif)
