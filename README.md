@@ -196,5 +196,6 @@ En el siguiente gif podemos ver el resultado de la implementación
        myLight.intensity = 5;
    }
 ```  
-Con esto, conseguimos implementar la funcionalidad de que el jugador pueda encender la luz.  
+Con esto, conseguimos implementar la funcionalidad de que el jugador pueda encender la luz.    
+
 ![alt_text](https://github.com/ULL-GII-InterfacesII/Practica03-Sergio-Guerra/blob/main/gifs/encenderLuz.gif)
